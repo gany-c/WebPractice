@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<script>
+			/*
+			for(var i = 0;i <5;i++)
+			{	
+				setTimeout(function(){
+					alert("i = "+i);
+				},5000);
+			}//prints 5 5 times
+			*/
+
+			/*
+			function outer()
+			{
+				var  i = 0;
+
+				function inner()
+				{
+					alert(i);
+				}
+
+				i++;
+				return inner;
+			}
+	
+			for(var i = 0;i <5;i++)
+                        {
+				var func = outer();
+				func.call();
+			}// prints  1 5 times
+			*/
+
+			function outer(){
+
+				var i = 0;
+
+                                setTimeout(function(){
+                                        alert("i = "+i);
+                                },5000);
+
+				setTimeout(function(){
+					i++;
+				},3000);
+
+				function inner()
+                                {
+                                        alert("returned function -- i "+i);
+                                }
+
+                                
+                                return inner;
+
+			}
+
+                        var func = outer();
+                        func.call();//prints 0,1
+
+			setTimeout(func,6000);
+
+			setTimeout(function(){
+
+				var func = outer();
+				func.call();
+			},10000);
+		</script>
+	</head>
+<body>
+
+</body>
+</htmll>
